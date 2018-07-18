@@ -1,0 +1,75 @@
+1. pycharm에서 mysite 프로젝트 생성
+2. Django 설치
+3. mysqlclient 설치
+   터미널에서
+   pip install mysqlclient==1.3.12
+4. django 프로젝트 생성
+   터미널에서
+   django-admin startproject mysitepy
+5. 쟝고프로젝트에 맞게 디렉토리 정리
+6. 두 가지 기본 설정(mysitepy/settings.py)
+   1) TIME_ZONE = 'Asia/Seoul'
+   2) DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'djdb',
+        'USER': 'djdb',
+        'PASSWORD': 'djdb',
+        'HOST': '127.0.0.1',
+        'PORT': '3306'
+        }
+    }
+7. 기본적으로 장고 프로젝트가 사용/관리하는 테이블 설정
+   터미널에서
+   python manage.py migrate
+
+8. 장고 프로젝트 관리자 계정 생성하기
+   터미널에서
+   python manage.py createsuperuser
+
+9. 지금까지 작업 내용 확인하기
+   1) 서버 시작하기
+      터미널에서
+      python manage.py runserver 0.0.0.0:8888
+   2) 브라우저로 접근
+      http://localhost:8888
+
+10. templates 디렉토리 설정
+   1) mysitepy/settings.py
+      TEMPLATES = [
+        {
+          'BACKEND': 'django.template.backends.django.DjangoTemplates',
+          'DIRS': [os.path.join(BASE_DIR, 'templates')],
+          'APP_DIRS': True,
+          'OPTIONS': {
+            'context_processors': [
+              'django.template.context_processors.debug',
+              'django.template.context_processors.request',
+              'django.contrib.auth.context_processors.auth',
+              'django.contrib.messages.context_processors.messages',
+            ],
+          },
+        },
+      ]
+
+   2) 디렉토리 생성
+     /mysitepy/templates
+
+11. static 디렉토리 설정
+
+12. SESSION 설정
+    # session
+    SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
+13. Application 작성작업
+
+== model delete
+Guestbook.objects.filter(no=10).filter(password='').delete()
+guestbook = Guestbook.objects.get(id=20)
+guestbook.delete
+
+== model update
+user = User.objects.get(id=.....)
+user.name = ''
+user.password = ''
+user.save()
